@@ -9,7 +9,11 @@ public class DiscordSlashListener extends ListenerAdapter {
         String comando = event.getInteraction().getName();
         switch (comando) {
             case "ola":
-                event.getChannel().sendMessage("olá, " + event.getUser().getName()).queue();
+                String name = event.getMember().getNickname().toUpperCase();
+                if (name == null) {
+                    name = event.getUser().getName().toUpperCase();
+                }
+                event.getChannel().sendMessage("olá, " + name).queue();
                 break;
             case "teste":
                 event.getChannel().sendMessage("teste").queue();
